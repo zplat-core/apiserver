@@ -1,0 +1,561 @@
+basePath: /api
+definitions:
+  bind.BodyToken:
+    properties:
+      captcha:
+        type: string
+      email:
+        type: string
+      password:
+        type: string
+    required:
+    - email
+    - password
+    type: object
+  bind.BodyUser:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+      ticket:
+        type: string
+    required:
+    - email
+    - password
+    type: object
+  bind.BodyUserPassword:
+    properties:
+      new_password:
+        type: string
+      old_password:
+        type: string
+    required:
+    - new_password
+    - old_password
+    type: object
+  bind.BodyUserPatch:
+    properties:
+      activated:
+        type: boolean
+      password:
+        type: string
+      token:
+        type: string
+    required:
+    - token
+    type: object
+  bind.BodyUserProfile:
+    properties:
+      avatar:
+        type: string
+      bio:
+        type: string
+      company:
+        type: string
+      location:
+        type: string
+      nickname:
+        type: string
+      url:
+        type: string
+    type: object
+  bind.QueryUser:
+    properties:
+      email:
+        type: string
+      limit:
+        type: integer
+      offset:
+        type: integer
+    type: object
+  gin.H:
+    additionalProperties: true
+    type: object
+  httputil.JSONResponse:
+    properties:
+      code:
+        type: integer
+      data:
+        type: object
+      msg:
+        type: string
+    type: object
+  model.User:
+    properties:
+      created:
+        type: string
+      email:
+        type: string
+      id:
+        type: integer
+      role:
+        type: string
+      status:
+        type: string
+      ticket:
+        type: string
+      updated:
+        type: string
+      username:
+        type: string
+      ux:
+        description: Global unique user ID
+        type: string
+    type: object
+  model.UserFormats:
+    properties:
+      avatar:
+        type: string
+      bio:
+        type: string
+      company:
+        type: string
+      created:
+        type: string
+      email:
+        type: string
+      id:
+        type: integer
+      location:
+        type: string
+      nickname:
+        type: string
+      role:
+        type: string
+      status:
+        type: string
+      updated:
+        type: string
+      url:
+        type: string
+      username:
+        type: string
+      ux:
+        type: string
+    type: object
+  model.UserProfile:
+    properties:
+      avatar:
+        type: string
+      bio:
+        type: string
+      company:
+        type: string
+      created:
+        type: string
+      id:
+        type: integer
+      location:
+        type: string
+      nickname:
+        type: string
+      updated:
+        type: string
+      url:
+        type: string
+      ux:
+        type: string
+    type: object
+info:
+  contact:
+    email: saltbo@foxmail.com
+    name: Zplat Support
+    url: https://saltbo.cn
+  description: This is a zplat api-server api.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: Zplat API
+  version: 1.0.0
+paths:
+  /v1/configs/{key}:
+    delete:
+      consumes:
+      - application/json
+      description: 根据键名删除配置项
+      parameters:
+      - description: 键名
+        in: path
+        name: key
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/httputil.JSONResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/httputil.JSONResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/httputil.JSONResponse'
+      summary: 删除配置项
+      tags:
+      - v1/Configs
+    get:
+      consumes:
+      - application/json
+      description: 根据键名获取配置项
+      parameters:
+      - description: 键名
+        in: path
+        name: key
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/httputil.JSONResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/httputil.JSONResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/httputil.JSONResponse'
+      summary: 获取配置项
+      tags:
+      - v1/Configs
+    put:
+      consumes:
+      - application/json
+      description: 根据键名修改配置项
+      parameters:
+      - description: 键名
+        in: path
+        name: key
+        required: true
+        type: string
+      - description: 参数
+        in: body
+        name: body
+        required: true
+        schema:
+          additionalProperties: true
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/httputil.JSONResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/httputil.JSONResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/httputil.JSONResponse'
+      summary: 修改配置项
+      tags:
+      - v1/Configs
+  /v1/tokens:
+    delete:
+      consumes:
+      - application/json
+      description: 用户状态登出
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/httputil.JSONResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/httputil.JSONResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/httputil.JSONResponse'
+      summary: 退出登录
+      tags:
+      - v1/Tokens
+    post:
+      consumes:
+      - application/json
+      description: 用于账户登录和申请密码重置
+      parameters:
+      - description: 参数
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/bind.BodyToken'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/httputil.JSONResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/httputil.JSONResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/httputil.JSONResponse'
+      summary: 登录/密码重置
+      tags:
+      - v1/Tokens
+  /v1/user:
+    get:
+      consumes:
+      - application/json
+      description: 获取已登录用户的详细信息
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/httputil.JSONResponse'
+            - properties:
+                data:
+                  allOf:
+                  - $ref: '#/definitions/gin.H'
+                  - properties:
+                      profile:
+                        $ref: '#/definitions/model.UserProfile'
+                      user:
+                        $ref: '#/definitions/model.User'
+                    type: object
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/httputil.JSONResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/httputil.JSONResponse'
+      summary: 当前登录用户信息
+      tags:
+      - v1/Users
+  /v1/user/password:
+    put:
+      consumes:
+      - application/json
+      description: 修改登录用户密码
+      parameters:
+      - description: 参数
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/bind.BodyUserPassword'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/httputil.JSONResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/httputil.JSONResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/httputil.JSONResponse'
+      summary: 修改登录用户密码
+      tags:
+      - v1/Users
+  /v1/user/profile:
+    put:
+      consumes:
+      - application/json
+      description: 更新用户的个人信息
+      parameters:
+      - description: 参数
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/bind.BodyUserProfile'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/httputil.JSONResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/httputil.JSONResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/httputil.JSONResponse'
+      summary: 修改个人信息
+      tags:
+      - v1/Users
+  /v1/users:
+    get:
+      consumes:
+      - application/json
+      description: 获取用户列表信息
+      parameters:
+      - in: query
+        name: email
+        type: string
+      - in: query
+        name: limit
+        type: integer
+      - in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/httputil.JSONResponse'
+            - properties:
+                data:
+                  allOf:
+                  - $ref: '#/definitions/gin.H'
+                  - properties:
+                      list:
+                        items:
+                          $ref: '#/definitions/model.UserFormats'
+                        type: array
+                      total:
+                        type: integer
+                    type: object
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/httputil.JSONResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/httputil.JSONResponse'
+      summary: 用户列表
+      tags:
+      - v1/Users
+    post:
+      consumes:
+      - application/json
+      description: 注册一个用户
+      parameters:
+      - description: 参数
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/bind.BodyUser'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/httputil.JSONResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/model.User'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/httputil.JSONResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/httputil.JSONResponse'
+      summary: 用户注册
+      tags:
+      - v1/Users
+  /v1/users/{email}:
+    patch:
+      consumes:
+      - application/json
+      description: 用于账户激活和密码重置
+      parameters:
+      - description: 邮箱
+        in: path
+        name: email
+        required: true
+        type: string
+      - description: 参数
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/bind.BodyUserPatch'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/httputil.JSONResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/httputil.JSONResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/httputil.JSONResponse'
+      summary: 更新一项用户信息
+      tags:
+      - v1/Users
+  /v1/users/{username}:
+    get:
+      consumes:
+      - application/json
+      description: 获取一个用户的公开信息
+      parameters:
+      - description: 用户名
+        in: path
+        name: username
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/httputil.JSONResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/model.UserProfile'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/httputil.JSONResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/httputil.JSONResponse'
+      summary: 用户查询
+      tags:
+      - v1/Users
+swagger: "2.0"
