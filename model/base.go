@@ -6,5 +6,6 @@ func Tables() []interface{} {
 		new(User),
 		new(UserProfile),
 		new(UserInvitation),
+		new(Subsystem),
 	}
 }

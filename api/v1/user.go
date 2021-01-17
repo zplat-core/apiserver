@@ -13,18 +13,19 @@ import (
 
 	"github.com/zplat-core/apiserver/api/bind"
 	"github.com/zplat-core/apiserver/api/middleware"
+	"github.com/zplat-core/apiserver/dao"
 	"github.com/zplat-core/apiserver/model"
 	"github.com/zplat-core/apiserver/service"
 	"github.com/zplat-core/apiserver/service/system"
 )
 
 type UserResource struct {
-	us *service.User
+	dUser *dao.User
 }
 
 func NewUserResource() *UserResource {
 	return &UserResource{
-		us: service.NewUser(),
+		dUser: dao.NewUser(),
 	}
 }
 
@@ -32,6 +33,7 @@ func (rs *UserResource) Register(router *gin.RouterGroup) {
 	router.POST("/users", rs.create)        // 账户注册
 	router.PATCH("/users/:email", rs.patch) // 账户激活、密码重置
 
+	router.Use(middleware.LoginAuth())
 	router.GET("/users", rs.findAll)        // 查询用户列表，需管理员权限
 	router.GET("/users/:username", rs.find) // 查询某一个用户的公开信息
 
@@ -58,7 +60,13 @@ func (rs *UserResource) findAll(c *gin.Context) {
 		return
 	}
 
-	list, total, err := rs.us.FindAll(p.Email, p.Offset, p.Limit)
+	query := dao.NewQuery()
+	query.WithPage(p.PageNo, p.PageSize)
+	if p.Email != "" {
+		query.WithEq("email", p.Email)
+	}
+
+	list, total, err := rs.dUser.FindAll(query)
 	if err != nil {
 		ginutil.JSONServerError(c, err)
 		return

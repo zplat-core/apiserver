@@ -1,5 +1,18 @@
 basePath: /api
 definitions:
+  bind.BodySubsystem:
+    properties:
+      address:
+        type: string
+      intro:
+        type: string
+      name:
+        type: string
+    required:
+    - address
+    - intro
+    - name
+    type: object
   bind.BodyToken:
     properties:
       captcha:
@@ -64,9 +77,9 @@ definitions:
     properties:
       email:
         type: string
-      limit:
+      pageNo:
         type: integer
-      offset:
+      pageSize:
         type: integer
     type: object
   gin.H:
@@ -261,6 +274,121 @@ paths:
       summary: 修改配置项
       tags:
       - v1/Configs
+  /v1/subsystems:
+    get:
+      consumes:
+      - application/json
+      description: 获取所有子系统
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/httputil.JSONResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/httputil.JSONResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/httputil.JSONResponse'
+      summary: 获取所有子系统
+      tags:
+      - v1/Subsystem
+    post:
+      consumes:
+      - application/json
+      description: 添加子系统
+      parameters:
+      - description: 参数
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/bind.BodySubsystem'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/httputil.JSONResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/httputil.JSONResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/httputil.JSONResponse'
+      summary: 添加子系统
+      tags:
+      - v1/Subsystem
+  /v1/subsystems/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: 删除子系统
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/httputil.JSONResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/httputil.JSONResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/httputil.JSONResponse'
+      summary: 删除子系统
+      tags:
+      - v1/Subsystem
+    put:
+      consumes:
+      - application/json
+      description: 修改子系统
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: 参数
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/bind.BodySubsystem'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/httputil.JSONResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/httputil.JSONResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/httputil.JSONResponse'
+      summary: 修改子系统
+      tags:
+      - v1/Subsystem
   /v1/tokens:
     delete:
       consumes:
@@ -418,10 +546,10 @@ paths:
         name: email
         type: string
       - in: query
-        name: limit
+        name: pageNo
         type: integer
       - in: query
-        name: offset
+        name: pageSize
         type: integer
       produces:
       - application/json

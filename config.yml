@@ -1,0 +1,4 @@
+database:
+  driver: sqlite3
+  dsn: zplat.db
+port: 8218

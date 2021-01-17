@@ -26,16 +26,19 @@ import (
 // @BasePath /api
 func SetupServerRoutes(ge *gin.Engine) {
 	apiRouter := ge.Group("/api/v1")
+	ginutil.SetupResource(apiRouter,
+		v1.NewConfigResource(),
+	)
+
 	apiRouter.Use(func(c *gin.Context) {
 		if viper.ConfigFileUsed() == "" {
 			ginutil.JSONError(c, http.StatusInternalServerError, fmt.Errorf("system is not initialized"))
 			return
 		}
 	})
-
 	ginutil.SetupResource(apiRouter,
-		v1.NewConfigResource(),
 		v1.NewTokenResource(),
 		v1.NewUserResource(),
+		v1.NewSubsystemResource(),
 	)
 }

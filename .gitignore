@@ -12,6 +12,8 @@
 # Output
 *.out
 build
+zplat.db
+config.yml
 
 # Dependency directories (remove the comment below to include it)
 # vendor/

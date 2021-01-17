@@ -87,8 +87,8 @@ func notGrantedError(c *gin.Context) {
 const (
 	ctxUxKey = "ctx-ux"
 
-	cookieTokenKey = "moreu-token"
-	cookieRoleKey  = "moreu-role"
+	cookieTokenKey = "zplat-token"
+	cookieRoleKey  = "zplat-role"
 )
 
 func UxSet(c *gin.Context, ux string) {

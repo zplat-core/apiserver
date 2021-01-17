@@ -24,12 +24,15 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/fsnotify/fsnotify"
 	"github.com/gin-gonic/gin"
 	"github.com/saltbo/gopkg/ginutil"
 	"github.com/saltbo/gopkg/jwtutil"
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 
 	"github.com/zplat-core/apiserver/api"
+	"github.com/zplat-core/apiserver/dao"
 )
 
 // serverCmd represents the v1 command
@@ -44,6 +47,10 @@ var serverCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(serverCmd)
+
+	serverCmd.Flags().Int("port", 8218, "server port")
+
+	viper.BindPFlags(serverCmd.Flags())
 }
 
 // 这里是主服务，包含注册、登录等；也包含用户信息，提供两种鉴权方式，通过后即可拿到用户信息
@@ -53,17 +60,14 @@ func serverRun() {
 	ginutil.SetupSwagger(ge)
 	jwtutil.Init("123")
 
-	//conf := config.ParseServer()
-	//if viper.ConfigFileUsed() != "" {
-	//	gormutil.Init(conf.Database, true)
-	//	gormutil.AutoMigrate(model.Tables())
-	//}
-	//
-	//viper.WatchConfig()
-	//viper.OnConfigChange(func(in fsnotify.Event) {
-	//	gormutil.Init(conf.Database, true)
-	//	gormutil.AutoMigrate(model.Tables())
-	//})
+	if viper.ConfigFileUsed() != "" {
+		dao.Init(viper.GetString("database.driver"), viper.GetString("database.dsn"))
+	}
+
+	viper.WatchConfig()
+	viper.OnConfigChange(func(in fsnotify.Event) {
+		dao.Init(viper.GetString("database.driver"), viper.GetString("database.dsn"))
+	})
 
 	api.SetupServerRoutes(ge)
 	ginutil.Startup(ge, ":8218")

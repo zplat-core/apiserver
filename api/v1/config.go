@@ -66,7 +66,7 @@ func (rs *ConfigResource) update(c *gin.Context) {
 	for key, value := range p {
 		viper.Set(fmt.Sprintf("%s.%s", prefix, key), value)
 	}
-	if err := viper.WriteConfigAs(viper.ConfigFileUsed()); err != nil {
+	if err := viper.WriteConfigAs("config.yml"); err != nil {
 		ginutil.JSONServerError(c, err)
 		return
 	}

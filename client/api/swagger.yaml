@@ -1,0 +1,845 @@
+openapi: 3.0.1
+info:
+  title: Zplat API
+  description: This is a zplat api-server api.
+  contact:
+    name: Zplat Support
+    url: https://saltbo.cn
+    email: saltbo@foxmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+- url: /api
+paths:
+  /v1/configs/{key}:
+    get:
+      tags:
+      - v1/Configs
+      summary: 获取配置项
+      description: 根据键名获取配置项
+      parameters:
+      - name: key
+        in: path
+        description: 键名
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/httputil.JSONResponse'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/httputil.JSONResponse'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/httputil.JSONResponse'
+    put:
+      tags:
+      - v1/Configs
+      summary: 修改配置项
+      description: 根据键名修改配置项
+      parameters:
+      - name: key
+        in: path
+        description: 键名
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        description: 参数
+        content:
+          application/json:
+            schema:
+              type: object
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/httputil.JSONResponse'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/httputil.JSONResponse'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/httputil.JSONResponse'
+      x-codegen-request-body-name: body
+    delete:
+      tags:
+      - v1/Configs
+      summary: 删除配置项
+      description: 根据键名删除配置项
+      parameters:
+      - name: key
+        in: path
+        description: 键名
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/httputil.JSONResponse'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/httputil.JSONResponse'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/httputil.JSONResponse'
+  /v1/subsystems:
+    get:
+      tags:
+      - v1/Subsystem
+      summary: 获取所有子系统
+      description: 获取所有子系统
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/httputil.JSONResponse'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/httputil.JSONResponse'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/httputil.JSONResponse'
+    post:
+      tags:
+      - v1/Subsystem
+      summary: 添加子系统
+      description: 添加子系统
+      requestBody:
+        description: 参数
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/bind.BodySubsystem'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/httputil.JSONResponse'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/httputil.JSONResponse'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/httputil.JSONResponse'
+      x-codegen-request-body-name: body
+  /v1/subsystems/{id}:
+    put:
+      tags:
+      - v1/Subsystem
+      summary: 修改子系统
+      description: 修改子系统
+      parameters:
+      - name: id
+        in: path
+        description: ID
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        description: 参数
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/bind.BodySubsystem'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/httputil.JSONResponse'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/httputil.JSONResponse'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/httputil.JSONResponse'
+      x-codegen-request-body-name: body
+    delete:
+      tags:
+      - v1/Subsystem
+      summary: 删除子系统
+      description: 删除子系统
+      parameters:
+      - name: id
+        in: path
+        description: ID
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/httputil.JSONResponse'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/httputil.JSONResponse'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/httputil.JSONResponse'
+  /v1/tokens:
+    post:
+      tags:
+      - v1/Tokens
+      summary: 登录/密码重置
+      description: 用于账户登录和申请密码重置
+      requestBody:
+        description: 参数
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/bind.BodyToken'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/httputil.JSONResponse'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/httputil.JSONResponse'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/httputil.JSONResponse'
+      x-codegen-request-body-name: body
+    delete:
+      tags:
+      - v1/Tokens
+      summary: 退出登录
+      description: 用户状态登出
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/httputil.JSONResponse'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/httputil.JSONResponse'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/httputil.JSONResponse'
+  /v1/user:
+    get:
+      tags:
+      - v1/Users
+      summary: 当前登录用户信息
+      description: 获取已登录用户的详细信息
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/httputil.JSONResponse'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/httputil.JSONResponse'
+  /v1/user/password:
+    put:
+      tags:
+      - v1/Users
+      summary: 修改登录用户密码
+      description: 修改登录用户密码
+      requestBody:
+        description: 参数
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/bind.BodyUserPassword'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/httputil.JSONResponse'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/httputil.JSONResponse'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/httputil.JSONResponse'
+      x-codegen-request-body-name: body
+  /v1/user/profile:
+    put:
+      tags:
+      - v1/Users
+      summary: 修改个人信息
+      description: 更新用户的个人信息
+      requestBody:
+        description: 参数
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/bind.BodyUserProfile'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/httputil.JSONResponse'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/httputil.JSONResponse'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/httputil.JSONResponse'
+      x-codegen-request-body-name: body
+  /v1/users:
+    get:
+      tags:
+      - v1/Users
+      summary: 用户列表
+      description: 获取用户列表信息
+      parameters:
+      - name: email
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: pageNo
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+      - name: pageSize
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_1'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/httputil.JSONResponse'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/httputil.JSONResponse'
+    post:
+      tags:
+      - v1/Users
+      summary: 用户注册
+      description: 注册一个用户
+      requestBody:
+        description: 参数
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/bind.BodyUser'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_2'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/httputil.JSONResponse'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/httputil.JSONResponse'
+      x-codegen-request-body-name: body
+  /v1/users/{email}:
+    patch:
+      tags:
+      - v1/Users
+      summary: 更新一项用户信息
+      description: 用于账户激活和密码重置
+      parameters:
+      - name: email
+        in: path
+        description: 邮箱
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        description: 参数
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/bind.BodyUserPatch'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/httputil.JSONResponse'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/httputil.JSONResponse'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/httputil.JSONResponse'
+      x-codegen-request-body-name: body
+  /v1/users/{username}:
+    get:
+      tags:
+      - v1/Users
+      summary: 用户查询
+      description: 获取一个用户的公开信息
+      parameters:
+      - name: username
+        in: path
+        description: 用户名
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_3'
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/httputil.JSONResponse'
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/httputil.JSONResponse'
+components:
+  schemas:
+    bind.BodySubsystem:
+      required:
+      - address
+      - intro
+      - name
+      type: object
+      properties:
+        address:
+          type: string
+        intro:
+          type: string
+        name:
+          type: string
+    bind.BodyToken:
+      required:
+      - email
+      - password
+      type: object
+      properties:
+        captcha:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+    bind.BodyUser:
+      required:
+      - email
+      - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+        ticket:
+          type: string
+    bind.BodyUserPassword:
+      required:
+      - new_password
+      - old_password
+      type: object
+      properties:
+        new_password:
+          type: string
+        old_password:
+          type: string
+    bind.BodyUserPatch:
+      required:
+      - token
+      type: object
+      properties:
+        activated:
+          type: boolean
+        password:
+          type: string
+        token:
+          type: string
+    bind.BodyUserProfile:
+      type: object
+      properties:
+        avatar:
+          type: string
+        bio:
+          type: string
+        company:
+          type: string
+        location:
+          type: string
+        nickname:
+          type: string
+        url:
+          type: string
+    bind.QueryUser:
+      type: object
+      properties:
+        email:
+          type: string
+        pageNo:
+          type: integer
+        pageSize:
+          type: integer
+    gin.H:
+      type: object
+    httputil.JSONResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties: {}
+          example: {}
+        msg:
+          type: string
+      example:
+        msg: msg
+        code: 0
+        data: {}
+    model.User:
+      type: object
+      properties:
+        created:
+          type: string
+        email:
+          type: string
+        id:
+          type: integer
+        role:
+          type: string
+        status:
+          type: string
+        ticket:
+          type: string
+        updated:
+          type: string
+        username:
+          type: string
+        ux:
+          type: string
+          description: Global unique user ID
+      example:
+        role: role
+        ux: ux
+        ticket: ticket
+        created: created
+        id: 0
+        updated: updated
+        email: email
+        status: status
+        username: username
+    model.UserFormats:
+      type: object
+      properties:
+        avatar:
+          type: string
+        bio:
+          type: string
+        company:
+          type: string
+        created:
+          type: string
+        email:
+          type: string
+        id:
+          type: integer
+        location:
+          type: string
+        nickname:
+          type: string
+        role:
+          type: string
+        status:
+          type: string
+        updated:
+          type: string
+        url:
+          type: string
+        username:
+          type: string
+        ux:
+          type: string
+    model.UserProfile:
+      type: object
+      properties:
+        avatar:
+          type: string
+        bio:
+          type: string
+        company:
+          type: string
+        created:
+          type: string
+        id:
+          type: integer
+        location:
+          type: string
+        nickname:
+          type: string
+        updated:
+          type: string
+        url:
+          type: string
+        ux:
+          type: string
+      example:
+        ux: ux
+        created: created
+        nickname: nickname
+        bio: bio
+        company: company
+        location: location
+        avatar: avatar
+        id: 0
+        updated: updated
+        url: url
+    inline_response_200:
+      type: object
+      properties:
+        data:
+          type: object
+          allOf:
+          - $ref: '#/components/schemas/gin.H'
+          - type: object
+            properties:
+              profile:
+                $ref: '#/definitions/model.UserProfile'
+              user:
+                $ref: '#/definitions/model.User'
+        httputil.JSONResponse:
+          $ref: '#/components/schemas/httputil.JSONResponse'
+      example:
+        data: ""
+        httputil.JSONResponse:
+          msg: msg
+          code: 0
+          data: {}
+    inline_response_200_1:
+      type: object
+      properties:
+        data:
+          type: object
+          allOf:
+          - $ref: '#/components/schemas/gin.H'
+          - type: object
+            properties:
+              list:
+                type: array
+                items:
+                  $ref: '#/definitions/model.UserFormats'
+              total:
+                type: integer
+        httputil.JSONResponse:
+          $ref: '#/components/schemas/httputil.JSONResponse'
+      example:
+        data: ""
+        httputil.JSONResponse:
+          msg: msg
+          code: 0
+          data: {}
+    inline_response_200_2:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/model.User'
+        httputil.JSONResponse:
+          $ref: '#/components/schemas/httputil.JSONResponse'
+      example:
+        data:
+          role: role
+          ux: ux
+          ticket: ticket
+          created: created
+          id: 0
+          updated: updated
+          email: email
+          status: status
+          username: username
+        httputil.JSONResponse:
+          msg: msg
+          code: 0
+          data: {}
+    inline_response_200_3:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/model.UserProfile'
+        httputil.JSONResponse:
+          $ref: '#/components/schemas/httputil.JSONResponse'
+      example:
+        data:
+          ux: ux
+          created: created
+          nickname: nickname
+          bio: bio
+          company: company
+          location: location
+          avatar: avatar
+          id: 0
+          updated: updated
+          url: url
+        httputil.JSONResponse:
+          msg: msg
+          code: 0
+          data: {}
