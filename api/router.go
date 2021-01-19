@@ -37,8 +37,8 @@ func SetupServerRoutes(ge *gin.Engine) {
 		}
 	})
 	ginutil.SetupResource(apiRouter,
+		v1.NewSubsystemResource(),
 		v1.NewTokenResource(),
 		v1.NewUserResource(),
-		v1.NewSubsystemResource(),
 	)
 }

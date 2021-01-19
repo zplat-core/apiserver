@@ -10,6 +10,6 @@
 package client
 
 type AllOfinlineResponse200Data struct {
-	Profile *ModelUserProfile `json:"profile,omitempty"`
-	User    *ModelUser        `json:"user,omitempty"`
+	List  []ModelSubsystem `json:"list,omitempty"`
+	Total int32            `json:"total,omitempty"`
 }

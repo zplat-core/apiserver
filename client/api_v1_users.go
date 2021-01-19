@@ -30,15 +30,15 @@ type V1UsersApiService service
 V1UsersApiService 当前登录用户信息
 获取已登录用户的详细信息
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@return InlineResponse200
+@return InlineResponse2001
 */
-func (a *V1UsersApiService) V1UserGet(ctx context.Context) (InlineResponse200, *http.Response, error) {
+func (a *V1UsersApiService) V1UserGet(ctx context.Context) (InlineResponse2001, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue InlineResponse200
+		localVarReturnValue InlineResponse2001
 	)
 
 	// create path and map variables
@@ -95,7 +95,7 @@ func (a *V1UsersApiService) V1UserGet(ctx context.Context) (InlineResponse200, *
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
-			var v InlineResponse200
+			var v InlineResponse2001
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -457,7 +457,7 @@ V1UsersApiService 用户列表
      * @param "Email" (optional.String) - 
      * @param "PageNo" (optional.Int32) - 
      * @param "PageSize" (optional.Int32) - 
-@return InlineResponse2001
+@return InlineResponse2002
 */
 
 type V1UsersApiV1UsersGetOpts struct { 
@@ -466,13 +466,13 @@ type V1UsersApiV1UsersGetOpts struct {
 	PageSize optional.Int32
 }
 
-func (a *V1UsersApiService) V1UsersGet(ctx context.Context, localVarOptionals *V1UsersApiV1UsersGetOpts) (InlineResponse2001, *http.Response, error) {
+func (a *V1UsersApiService) V1UsersGet(ctx context.Context, localVarOptionals *V1UsersApiV1UsersGetOpts) (InlineResponse2002, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue InlineResponse2001
+		localVarReturnValue InlineResponse2002
 	)
 
 	// create path and map variables
@@ -538,7 +538,7 @@ func (a *V1UsersApiService) V1UsersGet(ctx context.Context, localVarOptionals *V
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
-			var v InlineResponse2001
+			var v InlineResponse2002
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -577,15 +577,15 @@ V1UsersApiService 用户注册
 注册一个用户
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param body 参数
-@return InlineResponse2002
+@return InlineResponse2003
 */
-func (a *V1UsersApiService) V1UsersPost(ctx context.Context, body BindBodyUser) (InlineResponse2002, *http.Response, error) {
+func (a *V1UsersApiService) V1UsersPost(ctx context.Context, body BindBodyUser) (InlineResponse2003, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue InlineResponse2002
+		localVarReturnValue InlineResponse2003
 	)
 
 	// create path and map variables
@@ -644,7 +644,7 @@ func (a *V1UsersApiService) V1UsersPost(ctx context.Context, body BindBodyUser) 
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
-			var v InlineResponse2002
+			var v InlineResponse2003
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -683,15 +683,15 @@ V1UsersApiService 用户查询
 获取一个用户的公开信息
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param username 用户名
-@return InlineResponse2003
+@return InlineResponse2004
 */
-func (a *V1UsersApiService) V1UsersUsernameGet(ctx context.Context, username string) (InlineResponse2003, *http.Response, error) {
+func (a *V1UsersApiService) V1UsersUsernameGet(ctx context.Context, username string) (InlineResponse2004, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue InlineResponse2003
+		localVarReturnValue InlineResponse2004
 	)
 
 	// create path and map variables
@@ -749,7 +749,7 @@ func (a *V1UsersApiService) V1UsersUsernameGet(ctx context.Context, username str
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
-			var v InlineResponse2003
+			var v InlineResponse2004
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()

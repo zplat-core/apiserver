@@ -35,7 +35,7 @@ func (rs *SubsystemResource) Register(router *gin.RouterGroup) {
 // @Description 获取所有子系统
 // @Accept json
 // @Produce json
-// @Success 200 {object} httputil.JSONResponse
+// @Success 200 {object} httputil.JSONResponse{data=gin.H{list=[]model.Subsystem,total=int64}}
 // @Failure 400 {object} httputil.JSONResponse
 // @Failure 500 {object} httputil.JSONResponse
 // @Router /v1/subsystems [get]

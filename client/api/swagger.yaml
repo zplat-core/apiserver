@@ -133,7 +133,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/httputil.JSONResponse'
+                $ref: '#/components/schemas/inline_response_200'
         "400":
           description: Bad Request
           content:
@@ -322,7 +322,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200'
+                $ref: '#/components/schemas/inline_response_200_1'
         "400":
           description: Bad Request
           content:
@@ -435,7 +435,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_1'
+                $ref: '#/components/schemas/inline_response_200_2'
         "400":
           description: Bad Request
           content:
@@ -466,7 +466,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_2'
+                $ref: '#/components/schemas/inline_response_200_3'
         "400":
           description: Bad Request
           content:
@@ -543,7 +543,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_3'
+                $ref: '#/components/schemas/inline_response_200_4'
         "400":
           description: Bad Request
           content:
@@ -657,6 +657,25 @@ components:
         msg: msg
         code: 0
         data: {}
+    model.Subsystem:
+      type: object
+      properties:
+        access_key:
+          type: string
+        access_secret:
+          type: string
+        address:
+          type: string
+        created:
+          type: string
+        id:
+          type: integer
+        intro:
+          type: string
+        name:
+          type: string
+        updated:
+          type: string
     model.User:
       type: object
       properties:
@@ -763,6 +782,29 @@ components:
           - $ref: '#/components/schemas/gin.H'
           - type: object
             properties:
+              list:
+                type: array
+                items:
+                  $ref: '#/definitions/model.Subsystem'
+              total:
+                type: integer
+        httputil.JSONResponse:
+          $ref: '#/components/schemas/httputil.JSONResponse'
+      example:
+        data: ""
+        httputil.JSONResponse:
+          msg: msg
+          code: 0
+          data: {}
+    inline_response_200_1:
+      type: object
+      properties:
+        data:
+          type: object
+          allOf:
+          - $ref: '#/components/schemas/gin.H'
+          - type: object
+            properties:
               profile:
                 $ref: '#/definitions/model.UserProfile'
               user:
@@ -775,7 +817,7 @@ components:
           msg: msg
           code: 0
           data: {}
-    inline_response_200_1:
+    inline_response_200_2:
       type: object
       properties:
         data:
@@ -798,7 +840,7 @@ components:
           msg: msg
           code: 0
           data: {}
-    inline_response_200_2:
+    inline_response_200_3:
       type: object
       properties:
         data:
@@ -820,7 +862,7 @@ components:
           msg: msg
           code: 0
           data: {}
-    inline_response_200_3:
+    inline_response_200_4:
       type: object
       properties:
         data:

@@ -9,7 +9,7 @@
  */
 package client
 
-type AllOfinlineResponse2001Data struct {
-	Profile *ModelUserProfile `json:"profile,omitempty"`
-	User    *ModelUser        `json:"user,omitempty"`
+type InlineResponse2004 struct {
+	Data *ModelUserProfile `json:"data,omitempty"`
+	HttputilJSONResponse *HttputilJsonResponse `json:"httputil.JSONResponse,omitempty"`
 }

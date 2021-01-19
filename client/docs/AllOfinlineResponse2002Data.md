@@ -1,10 +1,10 @@
-# InlineResponse2002
+# AllOfinlineResponse2002Data
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | [***AllOfinlineResponse2002Data**](AllOfinlineResponse2002Data.md) |  | [optional] [default to null]
-**HttputilJSONResponse** | [***HttputilJsonResponse**](httputil.JSONResponse.md) |  | [optional] [default to null]
+**List** | [**[]DefinitionsmodelUserFormats**](#/definitions/model.UserFormats.md) |  | [optional] [default to null]
+**Total** | **int32** |  | [optional] [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

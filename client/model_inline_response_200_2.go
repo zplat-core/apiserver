@@ -10,6 +10,6 @@
 package client
 
 type InlineResponse2002 struct {
-	Data *ModelUser `json:"data,omitempty"`
+	Data *AllOfinlineResponse2002Data `json:"data,omitempty"`
 	HttputilJSONResponse *HttputilJsonResponse `json:"httputil.JSONResponse,omitempty"`
 }

@@ -42,6 +42,7 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [AllOfinlineResponse2001Data](docs/AllOfinlineResponse2001Data.md)
+ - [AllOfinlineResponse2002Data](docs/AllOfinlineResponse2002Data.md)
  - [AllOfinlineResponse200Data](docs/AllOfinlineResponse200Data.md)
  - [BindBodySubsystem](docs/BindBodySubsystem.md)
  - [BindBodyToken](docs/BindBodyToken.md)
@@ -56,6 +57,8 @@ Class | Method | HTTP request | Description
  - [InlineResponse2001](docs/InlineResponse2001.md)
  - [InlineResponse2002](docs/InlineResponse2002.md)
  - [InlineResponse2003](docs/InlineResponse2003.md)
+ - [InlineResponse2004](docs/InlineResponse2004.md)
+ - [ModelSubsystem](docs/ModelSubsystem.md)
  - [ModelUser](docs/ModelUser.md)
  - [ModelUserFormats](docs/ModelUserFormats.md)
  - [ModelUserProfile](docs/ModelUserProfile.md)

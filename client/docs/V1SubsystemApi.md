@@ -10,7 +10,7 @@ Method | HTTP request | Description
 [**V1SubsystemsPost**](V1SubsystemApi.md#V1SubsystemsPost) | **Post** /v1/subsystems | 添加子系统
 
 # **V1SubsystemsGet**
-> HttputilJsonResponse V1SubsystemsGet(ctx, )
+> InlineResponse200 V1SubsystemsGet(ctx, )
 获取所有子系统
 
 获取所有子系统
@@ -20,7 +20,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**HttputilJsonResponse**](httputil.JSONResponse.md)
+[**InlineResponse200**](inline_response_200.md)
 
 ### Authorization
 

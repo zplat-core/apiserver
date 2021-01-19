@@ -9,7 +9,7 @@
  */
 package client
 
-type AllOfinlineResponse2001Data struct {
-	Profile *ModelUserProfile `json:"profile,omitempty"`
-	User    *ModelUser        `json:"user,omitempty"`
+type AllOfinlineResponse2002Data struct {
+	List  []ModelUserFormats `json:"list,omitempty"`
+	Total int32              `json:"total,omitempty"`
 }

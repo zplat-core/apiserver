@@ -29,15 +29,15 @@ type V1SubsystemApiService service
 V1SubsystemApiService 获取所有子系统
 获取所有子系统
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@return HttputilJsonResponse
+@return InlineResponse200
 */
-func (a *V1SubsystemApiService) V1SubsystemsGet(ctx context.Context) (HttputilJsonResponse, *http.Response, error) {
+func (a *V1SubsystemApiService) V1SubsystemsGet(ctx context.Context) (InlineResponse200, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue HttputilJsonResponse
+		localVarReturnValue InlineResponse200
 	)
 
 	// create path and map variables
@@ -94,7 +94,7 @@ func (a *V1SubsystemApiService) V1SubsystemsGet(ctx context.Context) (HttputilJs
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
-			var v HttputilJsonResponse
+			var v InlineResponse200
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()

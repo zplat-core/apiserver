@@ -13,7 +13,7 @@ Method | HTTP request | Description
 [**V1UsersUsernameGet**](V1UsersApi.md#V1UsersUsernameGet) | **Get** /v1/users/{username} | 用户查询
 
 # **V1UserGet**
-> InlineResponse200 V1UserGet(ctx, )
+> InlineResponse2001 V1UserGet(ctx, )
 当前登录用户信息
 
 获取已登录用户的详细信息
@@ -23,7 +23,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse200**](inline_response_200.md)
+[**InlineResponse2001**](inline_response_200_1.md)
 
 ### Authorization
 
@@ -122,7 +122,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **V1UsersGet**
-> InlineResponse2001 V1UsersGet(ctx, optional)
+> InlineResponse2002 V1UsersGet(ctx, optional)
 用户列表
 
 获取用户列表信息
@@ -144,7 +144,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2001**](inline_response_200_1.md)
+[**InlineResponse2002**](inline_response_200_2.md)
 
 ### Authorization
 
@@ -158,7 +158,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **V1UsersPost**
-> InlineResponse2002 V1UsersPost(ctx, body)
+> InlineResponse2003 V1UsersPost(ctx, body)
 用户注册
 
 注册一个用户
@@ -172,7 +172,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2002**](inline_response_200_2.md)
+[**InlineResponse2003**](inline_response_200_3.md)
 
 ### Authorization
 
@@ -186,7 +186,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **V1UsersUsernameGet**
-> InlineResponse2003 V1UsersUsernameGet(ctx, username)
+> InlineResponse2004 V1UsersUsernameGet(ctx, username)
 用户查询
 
 获取一个用户的公开信息
@@ -200,7 +200,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2003**](inline_response_200_3.md)
+[**InlineResponse2004**](inline_response_200_4.md)
 
 ### Authorization
 
