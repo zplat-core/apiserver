@@ -19,7 +19,7 @@ var defaultRules = grbac.Rules{
 	{
 		Resource: &meta.Resource{
 			Host:   "*",
-			Path:   "/api/zplat/tokens",
+			Path:   "/api/v1/tokens",
 			Method: "POST",
 		},
 		Permission: &meta.Permission{
@@ -29,7 +29,7 @@ var defaultRules = grbac.Rules{
 	{
 		Resource: &meta.Resource{
 			Host:   "*",
-			Path:   "/api/zplat/users",
+			Path:   "/api/v1/users",
 			Method: "GET",
 		},
 		Permission: &meta.Permission{

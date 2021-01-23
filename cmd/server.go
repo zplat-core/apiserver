@@ -27,7 +27,6 @@ import (
 	"github.com/fsnotify/fsnotify"
 	"github.com/gin-gonic/gin"
 	"github.com/saltbo/gopkg/ginutil"
-	"github.com/saltbo/gopkg/jwtutil"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 
@@ -58,7 +57,6 @@ func serverRun() {
 	ge := gin.Default()
 	ginutil.SetupPing(ge)
 	ginutil.SetupSwagger(ge)
-	jwtutil.Init("123")
 
 	if viper.ConfigFileUsed() != "" {
 		dao.Init(viper.GetString("database.driver"), viper.GetString("database.dsn"))

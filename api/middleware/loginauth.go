@@ -9,6 +9,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/saltbo/gopkg/ginutil"
+	"github.com/saltbo/gopkg/jwtutil"
 	"github.com/storyicon/grbac"
 
 	"github.com/zplat-core/apiserver/model"
@@ -16,6 +17,7 @@ import (
 )
 
 func LoginAuth() gin.HandlerFunc {
+	jwtutil.Init("123")
 	return LoginAuthWithRoles(nil)
 }
 
@@ -93,6 +95,7 @@ const (
 
 func UxSet(c *gin.Context, ux string) {
 	c.Set(ctxUxKey, ux)
+	c.Request.Header.Set("X-Zplat-Ux", ux)
 }
 
 func UxGet(c *gin.Context) string {

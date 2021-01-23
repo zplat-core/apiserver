@@ -63,7 +63,7 @@ func (rs *UserResource) findAll(c *gin.Context) {
 	query := dao.NewQuery()
 	query.WithPage(p.PageNo, p.PageSize)
 	if p.Email != "" {
-		query.WithEq("email", p.Email)
+		query.WithLike("email", p.Email)
 	}
 
 	list, total, err := rs.dUser.FindAll(query)
